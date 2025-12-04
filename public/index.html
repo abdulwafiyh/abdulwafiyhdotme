@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AWH. Portofolio</title>
+    <link rel="icon" id="dynamic-favicon" href="profil.jpeg" type="image/jpeg">
+
+    <meta name="description" content="Portofolio Resmi Abd. Wafiy Hermansyah. Mahasiswa IAIN, Pegiat Komunikasi Reflektif, AI Enthusiast, dan Content Creator.">
+    <meta name="keywords" content="Abd. Wafiy Hermansyah, Portofolio, IAIN, Desain Grafis, AI, Web Developer">
+    <meta name="author" content="Abd. Wafiy Hermansyah">
+    <meta name="theme-color" content="#0a0f1c">
+    
+    <meta property="og:title" content="Abd. Wafiy Hermansyah | Portofolio">
+    <meta property="og:description" content="Mahasiswa IAIN, Pegiat Komunikasi Reflektif, & AI Enthusiast.">
+    <meta property="og:image" content="profil.jpeg">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            /* Colors */
+            --primary: #00f2ea; 
+            --primary-dark: #00c2bb;
+            --secondary: #ff0055;
+            --bg-body: #0a0f1c; 
+            --bg-card: #151b2e;
+            --bg-card-hover: #1e2538;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            
+            /* Effects */
+            --gradient: linear-gradient(135deg, #00f2ea 0%, #0080ff 100%);
+            --glass: rgba(21, 27, 46, 0.95);
+            --shadow-glow: 0 0 20px rgba(0, 242, 234, 0.15);
+            --radius-md: 15px;
+            --radius-lg: 20px;
+            
+            /* Z-Index Hierarchy */
+            --z-nav: 1000;
+            --z-admin: 2000;
+            --z-modal: 3000;
+            --z-toast: 10000;
+        }
+
+        [data-theme="light"] {
+            --primary: #0066cc;
+            --primary-dark: #004c99;
+            --bg-body: #f0f4f8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #cbd5e1;
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow-glow: 0 5px 15px rgba(0, 102, 204, 0.1);
+        }
+
+        /* Reset & Accessibility */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute; top: -40px; left: 0; background: var(--primary); color: #000;
+            padding: 8px; z-index: var(--z-toast); transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--text-main); line-height: 1.2; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        button, input, textarea { font-family: inherit; }
+        
+        /* Focus Outline for Accessibility */
+        :focus-visible { outline: 2px dashed var(--primary); outline-offset: 4px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        .detail-info p {
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+        word-break: break-word;
+        }
+
+        /* --- UTILITY COMPONENTS --- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 30px; background: var(--gradient);
+            color: #000; font-weight: 700; border-radius: 50px; border: none; cursor: pointer;
+            box-shadow: 0 10px 20px -10px rgba(0, 242, 234, 0.5); transition: all 0.3s ease;
+            font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 15px 30px -10px rgba(0, 242, 234, 0.7); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; filter: grayscale(1); }
+        
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); box-shadow: none; }
+        .btn-outline:hover { background: var(--primary); color: #000; }
+        .btn-sm { padding: 8px 16px; font-size: 0.85rem; border-radius: 8px; }
+        
+        .section-title {
+            text-align: center; font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 10px;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            position: relative; display: inline-block; width: 100%;
+        }
+        .text-center { text-align: center; }
+        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- NAVBAR --- */
+        #main-header {
+            padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: var(--z-nav);
+            background: var(--glass); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        #main-header.scrolled { padding: 10px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        #main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; position: relative; color: var(--text-muted); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 100%; height: 2px; bottom: -5px; left: 0;
+            background: var(--primary); transform: scaleX(0); transition: transform 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .icon-btn { 
+            cursor: pointer; font-size: 1.1rem; transition: 0.3s; 
+            color: var(--text-muted); background: transparent; border: none;
+            width: 40px; height: 40px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .icon-btn:hover { color: var(--primary); background: rgba(0, 242, 234, 0.1); }
+        
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); z-index: 1002; }
+
+        /* --- HERO --- */
+        .hero { 
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; 
+            padding-top: 80px; position: relative; overflow: hidden;
+        }
+        .hero-bg-glow {
+            position: absolute; width: 400px; height: 400px;
+            background: var(--primary); filter: blur(150px); opacity: 0.15;
+            border-radius: 50%; z-index: -1; animation: pulse 6s infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.1; transform: scale(1); } 100% { opacity: 0.2; transform: scale(1.2); } }
+        
+        .hero-img {
+            width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--primary); margin-bottom: 30px;
+            box-shadow: 0 0 50px rgba(0, 242, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .hero-img:hover { transform: scale(1.05) rotate(2deg); }
+        
+        .hero h1 { 
+            font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; 
+            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
+            background: linear-gradient(to right, var(--text-main), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-text-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; font-size: 1.1rem; }
+        .typewriter { font-weight: 700; color: var(--primary); border-right: 2px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 100px 0; }
+        
+        /* About & Grid */
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
+        @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+
+        .highlight-box { 
+            background: linear-gradient(145deg, var(--bg-card), rgba(0, 242, 234, 0.05)); 
+            border: 1px solid var(--border); border-left: 4px solid var(--primary);
+            padding: 30px; border-radius: var(--radius-lg); position: relative; overflow: hidden; 
+            box-shadow: var(--shadow-glow); transition: 0.3s;
+        }
+        .highlight-box:hover { transform: translateY(-5px); }
+
+        /* Timeline (Improved) */
+        .timeline { max-width: 800px; margin: 50px auto 0; position: relative; }
+        .timeline::after { 
+            content: ''; position: absolute; width: 2px; background: var(--border); 
+            top: 0; bottom: 0; left: 20px; /* Mobile left aligned */
+        }
+        
+        .timeline-item { padding: 10px 0 10px 50px; position: relative; width: 100%; box-sizing: border-box; }
+        .timeline-item::after { 
+            content: ''; position: absolute; width: 16px; height: 16px; 
+            background: var(--bg-body); border: 3px solid var(--primary); 
+            top: 24px; left: 13px; /* Align with line */
+            border-radius: 50%; z-index: 1; box-shadow: 0 0 10px rgba(0,242,234,0.5);
+        }
+        
+        .timeline-content { 
+            padding: 25px; background: var(--bg-card); border-radius: var(--radius-md); 
+            border: 1px solid var(--border); transition: 0.3s; 
+            position: relative; overflow: hidden;
+        }
+        .timeline-content:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-glow); }
+
+        /* Desktop Timeline Split */
+        @media (min-width: 768px) {
+            .timeline::after { left: 50%; margin-left: -1px; }
+            .timeline-item { width: 50%; padding-left: 0; padding-right: 0; }
+            .timeline-item:nth-child(odd) { left: 0; text-align: right; padding-right: 40px; }
+            .timeline-item:nth-child(even) { left: 50%; padding-left: 40px; }
+            
+            .timeline-item:nth-child(odd)::after { left: auto; right: -10px; }
+            .timeline-item:nth-child(even)::after { left: -10px; }
+        }
+
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .skill-card { 
+            background: var(--bg-card); padding: 30px 25px; border-radius: var(--radius-md); 
+            border: 1px solid var(--border); text-align: center; transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; height: 100%;
+        }
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--primary); background: var(--bg-card-hover); }
+        .skill-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--primary); }
+
+        /* Portfolio */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .portfolio-item { 
+            background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; 
+            border: 1px solid var(--border); transition: 0.3s; display: flex; flex-direction: column; 
+            cursor: pointer; height: 100%; position: relative;
+        }
+        .portfolio-item:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: var(--shadow-glow); }
+        .portfolio-img-wrapper { width: 100%; padding-top: 100%; /* 1:1 Aspect Ratio */ position: relative; overflow: hidden; }
+        .portfolio-img { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; transition: transform 0.5s ease;
+        }
+        .portfolio-item:hover .portfolio-img { transform: scale(1.1); }
+        
+        .portfolio-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; z-index: 1; background: var(--bg-card); }
+        .portfolio-date { font-size: 0.75rem; color: var(--primary); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .portfolio-info h3 { margin-bottom: 10px; font-size: 1.25rem; }
+        .portfolio-info p { 
+            font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; 
+            display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; 
+        }
+        .visit-link { margin-top: auto; font-size: 0.85rem; color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+
+        /* Skeleton Loading */
+        .skeleton { 
+            background: linear-gradient(90deg, var(--bg-card) 25%, var(--border) 50%, var(--bg-card) 75%); 
+            background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: var(--radius-md); height: 350px; 
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        /* Contact & Form */
+        .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-glow); }
+        .form-group { margin-bottom: 25px; position: relative; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-muted); }
+        .form-input, textarea { 
+            width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--border); 
+            background: var(--bg-body); color: var(--text-main); font-size: 1rem; 
+            transition: 0.3s; resize: vertical;
+        }
+        .form-input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 242, 234, 0.1); }
+        .char-count { position: absolute; right: 10px; bottom: -22px; font-size: 0.75rem; color: var(--text-muted); }
+
+        /* --- ADMIN PANEL --- */
+        #admin-panel { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+            background: var(--bg-body); z-index: var(--z-admin); overflow-y: auto; 
+            padding-top: 0; padding-bottom: 50px; 
+        }
+        .admin-nav {
+            position: sticky; top: 0; background: var(--bg-body); z-index: 10;
+            padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 30px; box-shadow: 0 4px 20px -5px rgba(0,0,0,0.3);
+        }
+        .admin-nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .admin-card { 
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); 
+            padding: 30px; margin-bottom: 30px; position: relative; 
+        }
+        
+        .admin-port-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-height: 500px; overflow-y: auto; padding: 5px; }
+        .admin-port-item { 
+            background: var(--bg-body); border-radius: 12px; padding: 15px; border: 1px solid var(--border); 
+            display: flex; flex-direction: column; gap: 12px; position: relative; 
+        }
+        .admin-port-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; background: #000; }
+        .admin-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; }
+
+        /* Drop Zone */
+        .drop-zone { 
+            width: 100%; aspect-ratio: 1/1; border: 2px dashed var(--border); border-radius: var(--radius-md); 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            color: var(--text-muted); transition: 0.3s; cursor: pointer; 
+            background: var(--bg-body); overflow: hidden; position: relative;
+        }
+        .drop-zone:hover { border-color: var(--primary); background: rgba(0, 242, 234, 0.05); }
+        .drop-zone.has-image { border-style: solid; }
+        #img-preview { width: 100%; height: 100%; object-fit: contain; display: none; }
+        /* Profile Preview Specific */
+        #profile-preview { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; border: 4px solid var(--primary); }
+
+        /* --- MODALS --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.85); z-index: var(--z-modal);
+            backdrop-filter: blur(5px); justify-content: center; align-items: center; padding: 20px;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-box {
+            background: var(--bg-card); padding: 30px; border-radius: var(--radius-lg); 
+            border: 1px solid var(--border); width: 100%; max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: translateY(20px); transition: transform 0.3s;
+        }
+        .modal-overlay.active .modal-box { transform: translateY(0); }
+        
+        .detail-content {
+            background: var(--bg-card); width: 100%; max-width: 900px; max-height: 90vh;
+            border-radius: var(--radius-lg); overflow: hidden; position: relative; border: 1px solid var(--border);
+            display: flex; flex-direction: column;
+        }
+        .detail-close-btn {
+            position: absolute; top: 15px; right: 15px; z-index: 10;
+            background: rgba(0,0,0,0.5); border: none; color: white;
+            width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .detail-info {
+            padding: 25px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;
+            overflow-y: auto; overflow-x: hidden;
+        }
+
+        @media(min-width: 768px) {
+            .detail-content { flex-direction: row; height: 70vh; }
+            .detail-img-container { width: 50%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+            .detail-img { width: 100%; height: 100%; object-fit: contain; }
+            .detail-info { width: 50%; padding: 40px; height: 100%; }
+        }
+
+        @media(max-width: 767px) {
+            .detail-content { overflow-y: auto; }
+            .detail-img { width: 100%; max-height: 300px; object-fit: cover; }
+            .detail-info { padding: 25px; height: auto; overflow: visible; }
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 50px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); background: var(--bg-card); margin-top: 50px; }
+        .social-icons a { 
+            display: inline-flex; width: 45px; height: 45px; border: 1px solid var(--border); border-radius: 50%; 
+            justify-content: center; align-items: center; margin: 0 8px; font-size: 1.2rem;
+            color: var(--text-muted); transition: 0.3s; background: var(--bg-body);
+        }
+        .social-icons a:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,242,234,0.3); }
+
+        /* UI Elements */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px; background: var(--gradient);
+            z-index: var(--z-toast); width: 0%; transition: width 0.1s;
+        }
+        #scrollTopBtn {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 999;
+            width: 50px; height: 50px; border: none; background: var(--primary);
+            color: #000; cursor: pointer; border-radius: 50%; font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,242,234,0.4); transition: 0.3s;
+            align-items: center; justify-content: center;
+        }
+
+        /* Responsive Global Overrides */
+        @media (max-width: 900px) {
+            .form-layout { flex-direction: column; }
+            .admin-actions { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; right: -100%; top: 70px; height: calc(100vh - 70px);
+                background: var(--bg-card); flex-direction: column; width: 80%;
+                padding: 40px; border-left: 1px solid var(--border); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5); gap: 20px; align-items: stretch;
+            }
+            .nav-links.active { right: 0; }
+            .nav-actions { display: none; }
+            .nav-links .mobile-actions { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+            .mobile-menu-btn { display: block; }
+        }
+        
+        /* Toast Notification */
+        #toast {
+            visibility: hidden; min-width: 250px; background-color: var(--bg-card); 
+            border-left: 4px solid var(--primary); color: var(--text-main); 
+            text-align: center; border-radius: 8px; padding: 16px; position: fixed; 
+            z-index: var(--z-toast); left: 50%; bottom: 30px; transform: translateX(-50%) translateY(20px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); opacity: 0; transition: 0.3s;
+        }
+        #toast.show { visibility: visible; bottom: 50px; opacity: 1; transform: translateX(-50%) translateY(0); }
+    </style>
+</head>
+<body data-theme="dark">
+    <a href="#main-content" class="skip-link">Ke Konten Utama</a>
+
+    <div id="scroll-progress"></div>
+
+    <header id="main-header">
+        <div class="container">
+            <a href="#" class="logo">AWH.</a>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" onclick="closeMobileMenu()">Tentang</a></li>
+                <li><a href="#education" onclick="closeMobileMenu()">Pendidikan</a></li>
+                <li><a href="#portfolio" onclick="closeMobileMenu()">Karya</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Kontak</a></li>
+                
+                <li class="mobile-actions" style="display:none;">
+                    <button class="btn btn-outline" style="width:100%; justify-content:center;" onclick="toggleTheme()">
+                        <i class="fas fa-adjust"></i> Ganti Tema
+                    </button>
+                    <button class="btn" style="width:100%; justify-content:center;" onclick="handleAuth()">
+                        <i class="fas fa-user-shield"></i> <span id="mobile-auth-text">Login Admin</span>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="icon-btn" onclick="toggleTheme()" aria-label="Ganti Tema">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="btn btn-sm" id="desktop-auth-btn" onclick="handleAuth()">
+                    <i class="fas fa-user-shield"></i> <span id="auth-btn-text">Login</span>
+                </button>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container">
+                <img src="profil.jpeg" id="hero-profile-img" alt="Foto Abd. Wafiy Hermansyah" class="hero-img" width="180" height="180" loading="eager" onerror="this.src='profil.jpeg'"> 
+                <h1>ABD.WAFIY HERMANSYAH</h1>
+                <div class="hero-text-container">
+                    <p>Saya adalah seorang <span class="typewriter"></span></p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">
+                        <i class="fas fa-map-marker-alt"></i> Indonesia &nbsp;|&nbsp; <i class="fas fa-university"></i> IAIN
+                    </p>
+                </div>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                    <a href="#portfolio" class="btn">Lihat Karya Saya</a>
+                    <a href="cv.pdf" target="_blank" class="btn btn-outline" rel="noopener noreferrer"><i class="fas fa-download"></i> Unduh CV</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title text-center">Tentang Saya</h2>
+                <p class="section-subtitle">Pegiat Integrasi Teknologi, Edukasi, & Komunikasi Reflektif.</p>
+                <div class="about-grid">
+                    <div>
+                        <h3 style="margin-bottom: 15px; color: var(--primary);">Introvert yang Adaptif</h3>
+                        <p style="margin-bottom: 15px; color: var(--text-muted);">
+                            Sebagai seorang <strong>Introvert</strong>, saya menemukan kekuatan dalam ketenangan dan observasi mendalam. Namun, saya sangat adaptif ketika harus berkolaborasi dalam tim atau memimpin sebuah inisiatif.
+                        </p>
+                        <p style="color: var(--text-muted);">
+                            Saat ini, fokus utama saya adalah pengembangan diri di bidang teknologi pendidikan Islam dan integrasi Artificial Intelligence untuk produktivitas. Saya percaya bahwa teknologi dapat menjadi jembatan untuk pendidikan yang lebih inklusif.
+                        </p>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <span style="font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Filosofi Hidup</span>
+                        <div style="font-size: 1.8rem; font-weight: 800; margin: 10px 0; color: var(--text-main);">Learning by Doing</div>
+                        <p style="font-style: italic; color: var(--text-muted); font-family: 'Playfair Display', serif;">
+                            "Ketidaktahuan hari ini adalah keahlian di masa depan jika kita berani mencoba. Saya belajar otodidak dari nol demi menyelesaikan tanggung jawab."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title text-center">Riwayat Pendidikan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">2012 - 2018</span>
+                            <h3>Madrasah Ibtidaiyah</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Pendidikan Dasar berbasis Agama Islam.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">2018 - 2021</span>
+                            <h3>Madrasah Tsanawiyah</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Aktif mengikuti kegiatan salat berjemaah siswa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">2021 - 2024</span>
+                            <h3>SMK</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Jurusan Desain Komunikasi Visual. Fokus pada desain grafis dan multimedia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">2024 - 2025</span>
+                            <h3>AMIK (Ex)</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">D3 Akademi Manajemen Informatika dan Komputer.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span style="color: var(--primary); font-size: 0.8rem; font-weight: 700;">2025 - SEKARANG</span>
+                            <h3>IAIN</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Mahasiswa S1. Mengembangkan riset integrasi AI dalam pendidikan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" style="background: rgba(0,242,234,0.02);">
+            <div class="container">
+                <h2 class="section-title text-center">Keahlian</h2>
+                <div class="skills-grid">
+                    <article class="skill-card">
+                        <i class="fas fa-robot skill-icon" aria-hidden="true"></i>
+                        <h3>AI Prompt Engineering</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Optimalisasi LLM (ChatGPT, Claude) untuk riset dan produktivitas.</p>
+                    </article>
+                    <article class="skill-card">
+                        <i class="fas fa-palette skill-icon" aria-hidden="true"></i>
+                        <h3>Desain & Editing</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Pengalaman DKV dan magang studio foto (Photoshop, Canva, CapCut).</p>
+                    </article>
+                    <article class="skill-card">
+                        <i class="fas fa-bullhorn skill-icon" aria-hidden="true"></i>
+                        <h3>Komunikasi</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Public speaking dasar dan penulisan kreatif (Creative Writing).</p>
+                    </article>
+                    <article class="skill-card">
+                        <i class="fas fa-code skill-icon" aria-hidden="true"></i>
+                        <h3>Web Dasar</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">HTML5, CSS3, dan pemahaman dasar JavaScript & Firebase.</p>
+                    </article>
+                    <article class="skill-card">
+                        <i class="fas fa-language skill-icon" aria-hidden="true"></i>
+                        <h3>Bahasa Inggris</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Kemampuan komunikasi lisan dan tulisan tingkat menengah (Intermediate).</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h2 class="section-title text-center">Karya & Projek</h2>
+                <div id="portfolio-grid" class="portfolio-grid">
+                    <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title text-center">Hubungi Saya</h2>
+                <div class="contact-container">
+                    <div class="form-group">
+                        <label for="contact-name">Nama Lengkap</label>
+                        <input type="text" id="contact-name" class="form-input" placeholder="Nama Anda" maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-msg">Pesan Anda</label>
+                        <textarea id="contact-msg" rows="5" class="form-input" placeholder="Tulis pesan, pertanyaan, atau tawaran kerjasama..." maxlength="1000" onkeyup="updateCharCount(this, 1000)" required></textarea>
+                        <span class="char-count">0/1000</span>
+                    </div>
+                    <button onclick="sendMessage()" id="btn-send" class="btn" style="width:100%;">
+                        <i class="fas fa-paper-plane"></i> Kirim Pesan
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://instagram.com/abdulwafiyh" target="_blank" aria-label="Kunjungi Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/abdulwafiyh" target="_blank" aria-label="Kunjungi LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:abdwbusiness@gmail.com" aria-label="Kirim Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.tiktok.com/@official_pioiy" target="_blank" aria-label="Kunjungi TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2025 ABD.WAFIY HERMANSYAH. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Dibuat dengan ❤️ dan AI.</p>
+        </div>
+    </footer>
+
+    <section id="admin-panel">
+        <div class="container">
+            <div class="admin-nav">
+                <div class="admin-nav-content">
+                    <h2 style="color:var(--primary); font-size: 1.5rem;">Dashboard Admin</h2>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="logoutSession()" class="btn btn-outline btn-sm" style="border-color: var(--secondary); color: var(--secondary);">
+                            <i class="fas fa-sign-out-alt"></i> Keluar
+                        </button>
+                        <button onclick="closePanel()" class="btn btn-sm">
+                            <i class="fas fa-times"></i> Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                
+                <div class="admin-card">
+                    <h3 id="form-title" style="margin-bottom: 20px; font-size: 1.3rem;"><i class="fas fa-plus-circle"></i> Tambah Karya</h3>
+                    
+                    <div class="form-group">
+                        <label>Foto (Wajib - Rasio 1:1)</label>
+                        <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Upload Gambar">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                            <p style="font-size: 0.9rem;">Klik atau Drop Foto</p>
+                            <img id="img-preview" src="" alt="Preview">
+                            <input type="file" id="file-input" hidden accept="image/*">
+                        </div>
+                        <input type="hidden" id="final-base64">
+                        <input type="hidden" id="port-date-hidden">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="port-title">Judul</label>
+                        <input type="text" id="port-title" class="form-input" placeholder="Judul Karya" maxlength="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="port-link">Link (Opsional)</label>
+                        <input type="url" id="port-link" class="form-input" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="port-desc">Deskripsi</label>
+                        <textarea id="port-desc" class="form-input" rows="3" maxlength="5000"></textarea>
+                    </div>
+                    
+                    <div style="display:flex; gap:10px;">
+                        <button onclick="savePortfolio()" id="btn-save" class="btn" style="flex:1;">Posting</button>
+                        <button onclick="resetForm()" id="btn-cancel" class="btn btn-outline" style="display:none; flex:1;">Batal</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div class="admin-card">
+                        <h3 style="margin-bottom: 15px; font-size: 1.3rem;"><i class="fas fa-user-circle"></i> Ganti Foto Profil</h3>
+                        <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:15px;">
+                            Foto akan langsung terupdate di Halaman Utama dan Favicon.
+                        </p>
+                        <div style="display: flex; gap: 20px; align-items: center;">
+                            <div style="width: 100px; height: 100px; background: #000; border-radius: 50%; flex-shrink: 0; overflow: hidden; position: relative;">
+                                <img id="profile-preview" src="" alt="Profile">
+                                <div id="profile-placeholder" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; color:var(--text-muted);">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 1;">
+                                <input type="file" id="profile-file-input" hidden accept="image/*">
+                                <button onclick="document.getElementById('profile-file-input').click()" class="btn btn-sm btn-outline" style="width:100%; margin-bottom:10px;">
+                                    <i class="fas fa-camera"></i> Pilih Foto
+                                </button>
+                                <button onclick="saveProfileImage()" id="btn-save-profile" class="btn btn-sm" style="width:100%;" disabled>
+                                    <i class="fas fa-save"></i> Simpan
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="profile-base64">
+                    </div>
+
+                    <div class="admin-card" style="flex: 1;">
+                        <h3 style="margin-bottom: 15px; font-size: 1.3rem;"><i class="fas fa-layer-group"></i> Daftar Karya</h3>
+                        <div id="admin-port-list" class="admin-port-list">
+                            <p style="color:var(--text-muted); font-size:0.9rem;">Memuat data...</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-card" style="flex: 1; display: flex; flex-direction: column;">
+                        <h3 style="margin-bottom: 15px; font-size: 1.3rem;"><i class="fas fa-envelope"></i> Pesan Masuk</h3>
+                        <div id="message-list" style="flex: 1; overflow-y: auto; padding-right: 5px;">
+                            <p style="color:var(--text-muted); font-size:0.9rem;">Belum ada pesan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    </section>
+
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="text-center" style="margin-bottom: 20px; color: var(--primary);">Login Admin</h3>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" class="form-input" placeholder="admin@email.com">
+            </div>
+            <div class="form-group">
+                <label for="login-pass">Password</label>
+                <input type="password" id="login-pass" class="form-input" placeholder="••••••">
+            </div>
+            <button onclick="performLogin()" class="btn" style="width:100%; margin-top:10px;">Masuk</button>
+            <button onclick="closeModal('login-modal')" class="btn btn-outline" style="width:100%; margin-top:10px; border:none; color:var(--text-muted);">Batal</button>
+        </div>
+    </div>
+
+    <div id="crop-modal" class="modal-overlay">
+        <div class="modal-box" style="max-width: 600px;">
+            <h3 style="margin-bottom: 15px;">Sesuaikan Foto</h3>
+            <div style="height: 300px; background: #000; margin-bottom: 20px; border-radius: 10px; overflow: hidden;">
+                <img id="image-to-crop" style="max-width: 100%; display: block;" alt="Crop Preview">
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="performCrop()" class="btn" style="flex:1;">Potong & Proses</button>
+                <button onclick="closeModal('crop-modal')" class="btn btn-outline" style="flex:1;">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-modal" class="modal-overlay">
+        <div class="modal-box text-center">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px;"></i>
+            <h3>Hapus Data?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Tindakan ini tidak dapat dibatalkan.</p>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="performDelete()" class="btn" style="background: var(--secondary); color: white; flex: 1;">Ya, Hapus</button>
+                <button onclick="closeModal('delete-modal')" class="btn btn-outline" style="flex: 1;">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-modal" class="modal-overlay">
+        <div class="detail-content">
+            <button onclick="closeModal('detail-modal')" class="detail-close-btn" aria-label="Tutup Detail">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="detail-img-container">
+                <img id="detail-img" class="detail-img" alt="Detail Project">
+            </div>
+            <div class="detail-info">
+                <span id="detail-date" style="display: block; color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;"></span>
+                <h2 id="detail-title" style="margin-bottom: 20px; line-height: 1.3;"></h2>
+                <p id="detail-desc" style="color: var(--text-muted); line-height: 1.7; white-space: pre-wrap; margin-bottom: 30px;"></p>
+                <a href="#" id="detail-link" target="_blank" rel="noopener noreferrer" class="btn">Kunjungi Link <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="topFunction()" id="scrollTopBtn" title="Ke Atas" aria-label="Scroll ke Atas"><i class="fas fa-arrow-up"></i></button>
+    <div id="toast">Notifikasi</div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // --- 1. KONFIGURASI FIREBASE ---
+            const firebaseConfig = {
+                apiKey: "AIzaSyCuznYseL1ysiE-fNXMbCgsMTSm0ADEQfY",
+                authDomain: "abdulwafiyhdotme.firebaseapp.com",
+                databaseURL: "https://abdulwafiyhdotme-default-rtdb.asia-southeast1.firebasedatabase.app", 
+                projectId: "abdulwafiyhdotme",
+                storageBucket: "abdulwafiyhdotme.firebasestorage.app",
+                messagingSenderId: "962154293870",
+                appId: "1:962154293870:web:b143d742a6fbca0a73547f",
+                measurementId: "G-43V8TTEHJW"
+            };
+
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            } else {
+                firebase.app(); 
+            }
+
+            const db = firebase.database();
+            const auth = firebase.auth();
+            
+            // Variabel Global
+            let currentUser = null;
+            let cropper = null;
+            let currentEditKey = null;
+            let deleteTarget = { key: null, type: null };
+            let portfolioData = {};
+            let cropTargetType = 'portfolio'; // Bisa 'portfolio' atau 'profile'
+
+            // --- AUTO LOAD PROFILE IMAGE ---
+            // Listener untuk memuat foto profil dari Firebase
+            db.ref('settings/profileImage').on('value', snap => {
+                const imgBase64 = snap.val();
+                if(imgBase64) {
+                    // Update Hero Image
+                    const heroImg = document.getElementById('hero-profile-img');
+                    if(heroImg) heroImg.src = imgBase64;
+
+                    // Update Favicon (Optional)
+                    const favicon = document.getElementById('dynamic-favicon');
+                    if(favicon) favicon.href = imgBase64;
+                    
+                    // Update Admin Preview (jika login)
+                    const adminPreview = document.getElementById('profile-preview');
+                    if(adminPreview) {
+                        adminPreview.src = imgBase64;
+                        adminPreview.style.display = 'block';
+                        document.getElementById('profile-placeholder').style.display = 'none';
+                    }
+                }
+            });
+
+            // --- UTILITIES ---
+            const escapeHtml = (text) => {
+                if (!text) return "";
+                return text.toString().replace(/[&<>"']/g, function(m) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+                });
+            };
+
+            window.showToast = (msg) => {
+                const t = document.getElementById("toast");
+                t.textContent = msg; t.className = "show";
+                setTimeout(() => t.className = t.className.replace("show", ""), 3000);
+            };
+
+            window.updateCharCount = (input, max) => {
+                const count = input.value.length;
+                const el = input.nextElementSibling;
+                if(el) el.textContent = `${count}/${max}`;
+            };
+
+            window.openModal = (id) => {
+                document.getElementById(id).classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+            
+            window.closeModal = (id) => {
+                document.getElementById(id).classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+
+            // --- AUTHENTICATION ---
+            auth.onAuthStateChanged((user) => {
+                currentUser = user;
+                const mobileText = document.getElementById('mobile-auth-text');
+                const desktopText = document.getElementById('auth-btn-text');
+                const desktopBtn = document.getElementById('desktop-auth-btn');
+
+                if (user) {
+                    if(mobileText) mobileText.textContent = "Buka Dashboard";
+                    if(desktopText) desktopText.textContent = "Dashboard";
+                    if(desktopBtn) desktopBtn.classList.add('btn-outline');
+                    loadAdminData();
+                } else {
+                    if(mobileText) mobileText.textContent = "Login Admin";
+                    if(desktopText) desktopText.textContent = "Login";
+                    if(desktopBtn) desktopBtn.classList.remove('btn-outline');
+                    const adminPanel = document.getElementById('admin-panel');
+                    if(adminPanel) adminPanel.style.display = 'none';
+                }
+            });
+
+            window.handleAuth = () => {
+                if (currentUser) window.openPanel();
+                else window.openModal('login-modal');
+            };
+
+            window.performLogin = () => {
+                const email = document.getElementById('login-email').value;
+                const pass = document.getElementById('login-pass').value;
+                if(!email || !pass) return showToast("Isi semua data!");
+
+                showToast("Memproses...");
+                auth.signInWithEmailAndPassword(email, pass)
+                    .then(() => {
+                        closeModal('login-modal');
+                        showToast("Selamat datang, Admin!");
+                        window.openPanel();
+                    })
+                    .catch(err => showToast("Gagal: " + err.message));
+            };
+
+            window.logoutSession = () => {
+                auth.signOut().then(() => {
+                    showToast("Berhasil Logout");
+                    window.closePanel();
+                });
+            };
+
+            // --- ADMIN PANEL LOGIC ---
+            window.openPanel = () => {
+                document.getElementById('admin-panel').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                const nav = document.getElementById('nav-links');
+                if(nav) nav.classList.remove('active');
+            };
+            window.closePanel = () => {
+                document.getElementById('admin-panel').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                window.resetForm();
+            };
+
+            // --- IMAGE CROPPER & UPLOAD LOGIC ---
+            const dropZone = document.getElementById('drop-zone');
+            const fileInput = document.getElementById('file-input');
+            const profileInput = document.getElementById('profile-file-input');
+            
+            // Listener Portfolio
+            dropZone.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', (e) => {
+                cropTargetType = 'portfolio';
+                handleFile(e.target.files[0]);
+            });
+            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary)'; });
+            dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--border)'; });
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = 'var(--border)';
+                cropTargetType = 'portfolio';
+                handleFile(e.dataTransfer.files[0]);
+            });
+
+            // Listener Profile Picture
+            profileInput.addEventListener('change', (e) => {
+                cropTargetType = 'profile';
+                handleFile(e.target.files[0]);
+            });
+
+            function handleFile(file) {
+                if (!file || !file.type.startsWith('image/')) return showToast("Harus file gambar!");
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('image-to-crop').src = e.target.result;
+                    openModal('crop-modal');
+                    if(cropper) cropper.destroy();
+                    cropper = new Cropper(document.getElementById('image-to-crop'), {
+                        aspectRatio: 1, viewMode: 1, autoCropArea: 1
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+
+            window.performCrop = () => {
+                if(!cropper) return;
+                const canvas = cropper.getCroppedCanvas({ width: 800, height: 800 });
+                const base64 = canvas.toDataURL('image/jpeg', 0.8); // Kompresi 0.8
+                
+                if (cropTargetType === 'portfolio') {
+                    // Logic Portfolio
+                    document.getElementById('img-preview').src = base64;
+                    document.getElementById('img-preview').style.display = 'block';
+                    document.querySelector('.drop-zone i').style.display = 'none';
+                    document.querySelector('.drop-zone p').style.display = 'none';
+                    document.getElementById('drop-zone').classList.add('has-image');
+                    document.getElementById('final-base64').value = base64;
+                } else {
+                    // Logic Profile Picture
+                    document.getElementById('profile-preview').src = base64;
+                    document.getElementById('profile-preview').style.display = 'block';
+                    document.getElementById('profile-placeholder').style.display = 'none';
+                    document.getElementById('profile-base64').value = base64;
+                    document.getElementById('btn-save-profile').disabled = false;
+                    document.getElementById('btn-save-profile').classList.remove('btn-outline');
+                    document.getElementById('btn-save-profile').classList.add('btn');
+                }
+                
+                closeModal('crop-modal');
+                cropper.destroy(); cropper = null;
+            };
+
+            // --- SAVE FUNCTIONS ---
+            
+            // 1. Save Profile
+            window.saveProfileImage = () => {
+                if(!currentUser) return showToast("Login dulu.");
+                const base64 = document.getElementById('profile-base64').value;
+                if(!base64) return showToast("Pilih foto dulu.");
+                
+                const btn = document.getElementById('btn-save-profile');
+                btn.textContent = "Menyimpan...";
+                btn.disabled = true;
+
+                db.ref('settings/profileImage').set(base64)
+                    .then(() => {
+                        showToast("Foto Profil Berhasil Diganti!");
+                        btn.textContent = "Tersimpan";
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-save"></i> Simpan';
+                            btn.disabled = true;
+                        }, 2000);
+                    })
+                    .catch(e => {
+                        showToast("Error: " + e.message);
+                        btn.textContent = "Coba Lagi";
+                        btn.disabled = false;
+                    });
+            };
+
+            // 2. Save Portfolio
+            window.savePortfolio = () => {
+                if(!currentUser) return showToast("Sesi habis, silakan login ulang.");
+                
+                const title = document.getElementById('port-title').value.trim();
+                const desc = document.getElementById('port-desc').value.trim();
+                const link = document.getElementById('port-link').value.trim();
+                const img = document.getElementById('final-base64').value;
+                const btn = document.getElementById('btn-save');
+
+                if(!title || !img) return showToast("Judul dan Foto wajib!");
+
+                btn.disabled = true; btn.textContent = "Menyimpan...";
+                
+                const data = {
+                    title, desc, link, img,
+                    date: document.getElementById('port-date-hidden').value || new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})
+                };
+
+                const ref = currentEditKey ? db.ref('portfolio/' + currentEditKey) : db.ref('portfolio').push();
+                const promise = currentEditKey ? ref.update(data) : ref.set(data);
+
+                promise.then(() => {
+                    showToast("Berhasil disimpan!");
+                    window.resetForm();
+                    btn.disabled = false; btn.textContent = "Posting";
+                }).catch(e => {
+                    console.error(e);
+                    showToast("Error: " + e.message);
+                    btn.disabled = false; btn.textContent = "Posting";
+                });
+            };
+
+            window.editPortfolio = (key) => {
+                const item = portfolioData[key];
+                if (!item) return showToast("Data tidak ditemukan error.");
+
+                currentEditKey = key;
+                
+                document.getElementById('port-title').value = item.title || '';
+                document.getElementById('port-desc').value = item.desc || '';
+                document.getElementById('port-link').value = item.link || '';
+                document.getElementById('final-base64').value = item.img || '';
+                document.getElementById('port-date-hidden').value = item.date || '';
+
+                const preview = document.getElementById('img-preview');
+                preview.src = item.img; 
+                preview.style.display = 'block';
+                document.querySelector('.drop-zone i').style.display = 'none';
+                document.querySelector('.drop-zone p').style.display = 'none';
+                
+                document.getElementById('form-title').innerHTML = '<i class="fas fa-edit"></i> Edit Karya';
+                document.getElementById('btn-save').textContent = 'Simpan Perubahan';
+                document.getElementById('btn-cancel').style.display = 'inline-block';
+                
+                document.getElementById('admin-panel').scrollTo({top: 0, behavior: 'smooth'});
+            };
+
+            window.confirmDelete = (key, type) => {
+                deleteTarget = { key, type };
+                openModal('delete-modal');
+            };
+
+            window.performDelete = () => {
+                if(!currentUser || !deleteTarget.key) return;
+                const path = deleteTarget.type === 'msg' ? 'messages' : 'portfolio';
+                db.ref(path).child(deleteTarget.key).remove()
+                    .then(() => showToast("Data dihapus"))
+                    .catch(e => showToast(e.message));
+                closeModal('delete-modal');
+            };
+
+            window.resetForm = () => {
+                currentEditKey = null;
+                document.getElementById('port-title').value = '';
+                document.getElementById('port-desc').value = '';
+                document.getElementById('port-link').value = '';
+                document.getElementById('final-base64').value = '';
+                document.getElementById('port-date-hidden').value = '';
+                
+                document.getElementById('img-preview').style.display = 'none';
+                document.querySelector('.drop-zone i').style.display = 'block';
+                document.querySelector('.drop-zone p').style.display = 'block';
+                
+                document.getElementById('btn-save').textContent = 'Posting';
+                document.getElementById('btn-save').disabled = false;
+                document.getElementById('btn-cancel').style.display = 'none';
+                document.getElementById('form-title').innerHTML = '<i class="fas fa-plus-circle"></i> Tambah Karya';
+            };
+
+            // --- PUBLIC DATA LOAD ---
+            db.ref('portfolio').on('value', snap => {
+                const grid = document.getElementById('portfolio-grid');
+                const data = snap.val();
+                grid.innerHTML = '';
+                
+                if(data) {
+                    Object.entries(data).reverse().forEach(([key, item]) => {
+                        const article = document.createElement('portfolio-item');
+                        article.className = 'portfolio-item';
+                        article.onclick = () => openDetail(item);
+                        
+                        article.innerHTML = `
+                            <div class="portfolio-img-wrapper">
+                                <img src="${item.img}" class="portfolio-img" alt="${escapeHtml(item.title)}" loading="lazy">
+                            </div>
+                            <div class="portfolio-info">
+                                <span class="portfolio-date">${escapeHtml(item.date)}</span>
+                                <h3>${escapeHtml(item.title)}</h3>
+                                <p>${escapeHtml(item.desc)}</p>
+                                <span class="visit-link">Detail <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        `;
+                        grid.appendChild(article);
+                    });
+                } else {
+                    grid.innerHTML = '<div class="text-center" style="grid-column:1/-1; padding:20px;">Belum ada karya yang ditampilkan.</div>';
+                }
+            });
+
+            function openDetail(item) {
+                document.getElementById('detail-img').src = item.img;
+                document.getElementById('detail-title').textContent = item.title;
+                document.getElementById('detail-desc').textContent = item.desc;
+                document.getElementById('detail-date').textContent = item.date;
+                
+                const btn = document.getElementById('detail-link');
+                if(item.link && item.link.startsWith('http')) {
+                    btn.href = item.link;
+                    btn.style.display = 'inline-flex';
+                } else {
+                    btn.style.display = 'none';
+                }
+                openModal('detail-modal');
+            }
+
+            // --- ADMIN DATA LOAD ---
+            function loadAdminData() {
+                // Load Portfolio List
+                db.ref('portfolio').on('value', snap => {
+                    const list = document.getElementById('admin-port-list');
+                    const data = snap.val();
+                    let html = '';
+                    portfolioData = {}; 
+
+                    if(data) {
+                        Object.entries(data).reverse().forEach(([key, item]) => {
+                            portfolioData[key] = item; 
+                            html += `
+                            <div class="admin-port-item">
+                                <img src="${item.img}" class="admin-port-img" alt="Thumbnail">
+                                <div style="font-weight:700; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${escapeHtml(item.title)}</div>
+                                <div class="admin-actions">
+                                    <button onclick="editPortfolio('${key}')" class="btn btn-sm" style="background:var(--primary); color:black;">Edit</button>
+                                    <button onclick="confirmDelete('${key}', 'port')" class="btn btn-sm" style="background:var(--secondary); color:white;">Hapus</button>
+                                </div>
+                            </div>`;
+                        });
+                        list.innerHTML = html;
+                    } else list.innerHTML = 'Data kosong.';
+                });
+
+                // Load Messages
+                db.ref('messages').on('value', snap => {
+                    const list = document.getElementById('message-list');
+                    const data = snap.val();
+                    let html = '';
+                    if(data) {
+                        Object.entries(data).reverse().forEach(([key, msg]) => {
+                            html += `
+                            <div style="background:var(--bg-body); padding:15px; border-radius:10px; border:1px solid var(--border); margin-bottom:10px; position:relative;">
+                                <button onclick="confirmDelete('${key}', 'msg')" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--secondary); cursor:pointer;" aria-label="Hapus Pesan"><i class="fas fa-trash"></i></button>
+                                <strong style="color:var(--primary);">${escapeHtml(msg.name)}</strong>
+                                <p style="font-size:0.9rem; margin-top:5px;">${escapeHtml(msg.message)}</p>
+                                <small style="color:var(--text-muted); font-size:0.7rem;">${msg.date}</small>
+                            </div>`;
+                        });
+                        list.innerHTML = html;
+                    } else list.innerHTML = 'Tidak ada pesan.';
+                });
+            }
+
+            // --- PUBLIC MESSAGING ---
+            window.sendMessage = () => {
+                const name = document.getElementById('contact-name').value.trim();
+                const msg = document.getElementById('contact-msg').value.trim();
+                if(!name || !msg) return showToast("Nama & Pesan wajib diisi!");
+
+                const btn = document.getElementById('btn-send');
+                btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+
+                const now = new Date();
+                db.ref('messages').push({
+                    name, message: msg,
+                    date: now.toLocaleDateString() + ' ' + now.toLocaleTimeString()
+                }).then(() => {
+                    showToast("Pesan Terkirim!");
+                    document.getElementById('contact-name').value = '';
+                    document.getElementById('contact-msg').value = '';
+                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
+                }).catch((error) => {
+                    console.error("Error sending message:", error);
+                    showToast("Gagal mengirim: " + error.message);
+                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
+                });
+            };
+        });
+
+        // --- UI EFFECT LOGIC ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = document.getElementById("scroll-progress");
+            if(progress) progress.style.width = (winScroll / height) * 100 + "%";
+            
+            const header = document.getElementById('main-header');
+            if(header) {
+                if(winScroll > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            }
+
+            const topBtn = document.getElementById("scrollTopBtn");
+            if(topBtn) topBtn.style.display = winScroll > 300 ? "flex" : "none";
+        });
+
+        window.topFunction = () => { window.scrollTo({top: 0, behavior: 'smooth'}); }
+        
+        window.toggleMobileMenu = () => {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+            const icon = document.getElementById('menu-icon');
+            if(nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        window.closeMobileMenu = () => {
+            const nav = document.getElementById('nav-links');
+            if(nav) nav.classList.remove('active');
+            const icon = document.getElementById('menu-icon');
+            if(icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+
+        // Theme Toggle
+        window.toggleTheme = () => {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', next);
+            
+            const icons = document.querySelectorAll('.icon-btn i, .mobile-actions i.fa-adjust');
+            icons.forEach(i => {
+                if(next === 'light') { i.classList.remove('fa-sun'); i.classList.add('fa-moon'); }
+                else { i.classList.remove('fa-moon'); i.classList.add('fa-sun'); }
+            });
+        }
+
+        // Typewriter
+        document.addEventListener('DOMContentLoaded', () => {
+            const typeEl = document.querySelector('.typewriter');
+            const txts = ["Mahasiswa IAIN.", "Pegiat Komunikasi.", "AI Enthusiast.", "Content Creator."];
+            let tIdx = 0, cIdx = 0, isDel = false;
+
+            function typeWriter() {
+                if(!typeEl) return;
+                const current = txts[tIdx];
+                if(isDel) {
+                    typeEl.textContent = current.substring(0, cIdx--);
+                    if(cIdx < 0) { isDel = false; tIdx = (tIdx+1)%txts.length; setTimeout(typeWriter, 500); return; }
+                } else {
+                    typeEl.textContent = current.substring(0, cIdx++);
+                    if(cIdx > current.length) { isDel = true; setTimeout(typeWriter, 2000); return; }
+                }
+                setTimeout(typeWriter, isDel ? 50 : 100);
+            }
+            typeWriter();
+        });
+    </script>
+</body>
+</html>
